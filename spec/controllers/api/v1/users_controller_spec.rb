@@ -12,6 +12,13 @@ RSpec.describe Api::V1::UsersController, type: :controller do
             password: "password",
             password_confirmation: "password",
           },
+          profile: {
+            sex: "male",
+            calorie_spread_ratio: 2,
+            fat_ratio: 0.2,
+            protein_ratio: 2.0,
+            activity_level: 1,
+          },
         }
 
         post :create, params: params

@@ -28,6 +28,7 @@ end
 
 group :test do
   gem "factory_bot_rails"
+  gem "json_spec"
   gem "shoulda-matchers", require: false
   gem "simplecov", require: false
 end

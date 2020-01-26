@@ -1,8 +1,7 @@
 class ApplicationResponder < ActionController::Responder
-  include Responders::FlashResponder
-  include Responders::HttpCacheResponder
+  private
 
-  # Redirects resources to the collection path (index action) instead
-  # of the resource path (show action) for POST/PUT/DELETE requests.
-  # include Responders::CollectionResponder
+  def json_resource_errors
+    ValidationErrorsSerializer.new(resource).serialize
+  end
 end

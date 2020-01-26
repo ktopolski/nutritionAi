@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe Api::V1::UsersController, type: :controller do
   describe "#create" do
     context "with valid params" do
-      it "creates user with profile" do
+      it "creates user and profile" do
         params = {
           user: {
             email: "user@example.com",
@@ -30,7 +30,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     end
 
     context "with invalid user params" do
-      it "returns validation errors and does not create user and profile" do
+      it "respond with validation erorrs and 422 status" do
         params = {
           user: {
             email: "invalid",
@@ -50,9 +50,15 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
         post :create, params: params, as: :json
 
+
+        email_validation = build_validation_errors("email", "is invalid")
+        password_validation = build_validation_errors(
+          "password",
+          "is too short (minimum is 6 characters)"
+        )
+        expect(response.body).to include_json(email_validation)
+        expect(response.body).to include_json(password_validation)
         expect(response.code).to eql("422")
-        expect(User.count).to be(0)
-        expect(Profile.count).to be(0)
       end
     end
 
@@ -82,5 +88,13 @@ RSpec.describe Api::V1::UsersController, type: :controller do
         expect(Profile.count).to be(0)
       end
     end
+  end
+
+  def build_validation_errors(field, code)
+    {
+      "resource": "SignUpForm",
+      "field": "#{field}",
+      "code": "#{code}",
+    }.to_json
   end
 end

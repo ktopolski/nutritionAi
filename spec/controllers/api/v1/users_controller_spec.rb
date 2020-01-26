@@ -21,7 +21,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
           },
         }
 
-        post :create, params: params
+        post :create, params: params, as: :json
 
         expect(response.code).to eql("200")
         expect(User.count).to be(1)
@@ -48,7 +48,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
           },
         }
 
-        post :create, params: params
+        post :create, params: params, as: :json
 
         expect(response.code).to eql("422")
         expect(User.count).to be(0)
@@ -75,7 +75,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
           },
         }
 
-        post :create, params: params
+        post :create, params: params, as: :json
 
         expect(response.code).to eql("422")
         expect(User.count).to be(0)

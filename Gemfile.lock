@@ -151,6 +151,9 @@ GEM
     rainbow (3.0.0)
     rake (13.0.1)
     redis (3.3.5)
+    responders (3.0.0)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
@@ -232,6 +235,7 @@ DEPENDENCIES
   puma (~> 4.1)
   rails (~> 6.0.1)
   redis (~> 3.0)
+  responders
   rspec-rails (~> 4.0.0.beta3)
   rubocop (~> 0.77.0)
   rubocop-performance

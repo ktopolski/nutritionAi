@@ -5,10 +5,14 @@ class SignUpForm
                 :password_confirmation, :sex, :calorie_spread_ratio,
                 :fat_ratio, :protein_ratio, :activity_level
 
+  validate :validate_children
+
   def save
-    ActiveRecord::Base.transaction do
-      user.save!
-      profile.save!
+    if valid?
+      ActiveRecord::Base.transaction do
+        user.save!
+        profile.save!
+      end
     end
   end
 
@@ -38,13 +42,11 @@ class SignUpForm
      end
   end
 
-  def validate_model
+  def validate_children
     if user.invalid?
       promote_errors(user.errors)
     end
-  end
 
-  def validate_children
     if profile.invalid?
       promote_errors(profile.errors)
     end

@@ -11,6 +11,7 @@ gem "pg", ">= 0.18", "< 2.0"
 gem "puma", "~> 4.1"
 gem "rails", "~> 6.0.1"
 gem "redis", "~> 3.0"
+gem "responders"
 gem "sidekiq"
 
 group :development, :test do

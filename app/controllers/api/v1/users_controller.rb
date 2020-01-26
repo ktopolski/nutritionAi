@@ -6,7 +6,7 @@ module Api
       def create
         @sign_up_form = SignUpForm.new(user_params.merge(profile_params))
         @sign_up_form.save
-        @sign_up_form
+        respond_with @sign_up_form
       end
 
       private
